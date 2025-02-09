@@ -3,7 +3,9 @@ const Task = require("../model/taskModel");
 
 const createTask = async (req, res) => {
   try {
+    console.log(req.body);
     const { title, description, dueDate, priority, userId } = req.body;
+
 
     const user = await User.findById(userId);
 
@@ -24,7 +26,7 @@ const createTask = async (req, res) => {
     user.tasks.push(task._id);
     await user.save();
 
-    return res.status(201).json({ message: "Task created successfully" });
+    return res.status(201).json({ message: "Task created successfully",tasks:task});
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Internal server error" });
@@ -33,14 +35,16 @@ const createTask = async (req, res) => {
 
 const displayTask = async (req, res) => {
   try {
-    const userId = req.params.id;
+    console.log("im here bro")
+    const { id } = req.body;
+    console.log(id);
 
-    const user = await User.findById(userId);
+    const user = await User.findById(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const tasks = await Task.find({ user: userId });
+    const tasks = await Task.find({ user: id });
 
     return res.status(200).json({
       message: "Tasks successfully fetched",

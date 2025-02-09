@@ -52,14 +52,27 @@ const userLogin = async (req, res) => {
       httpOnly: true,
       maxAge: 3600000,
     });
-
-    return res.status(200).json({ message: "LoggedIn successfully" });
+    const userDetails = {
+      userId: user._id,
+      userName:user.name,
+      role:user.role
+    }
+    return res.status(200).json({ message: "LoggedIn successfully",user:userDetails});
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
 };
 
+const isProtected = (req,res) => {
+  try {
+    return res.status(200).json({message:"Permission granted"})
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 module.exports = {
   userSignUp,
   userLogin,
+  isProtected
 };
