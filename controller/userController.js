@@ -49,8 +49,9 @@ const userLogin = async (req, res) => {
     });
 
     res.cookie("auth_token", token, {
-      httpOnly: true,
-      maxAge: 3600000,
+      httpOnly: true,       
+      secure: true,         
+      maxAge: 3600000,      
     });
     const userDetails = {
       userId: user._id,
