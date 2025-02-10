@@ -32,6 +32,7 @@ const userSignUp = async (req, res) => {
 
 const userLogin = async (req, res) => {
   try {
+    console.log("facing problem in login");
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
