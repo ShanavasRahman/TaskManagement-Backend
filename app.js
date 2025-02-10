@@ -7,7 +7,7 @@ const userRoute = require("./route/userRoute");
 const adminRoute = require("./route/adminRoute");
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://task-management-tawny-two.vercel.app",
     credentials:true
 }))
 app.use(express.json())
