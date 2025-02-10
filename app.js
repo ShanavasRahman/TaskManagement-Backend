@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const userRoute = require("./route/userRoute");
+const adminRoute = require("./route/adminRoute");
 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -18,6 +19,7 @@ mongoose.connect("mongodb://localhost:27017/task-management")
     })
 
 app.use("/", userRoute);
+app.use("/admin", adminRoute);
 
 app.listen(3000, () => {
     console.log("server connected successfully");

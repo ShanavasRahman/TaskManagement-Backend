@@ -71,8 +71,19 @@ const isProtected = (req,res) => {
   }
 }
 
+const logout = (req, res) => {
+  try {
+    res.clearCookie("auth_token");
+    return res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+
+  }
+}
+
 module.exports = {
   userSignUp,
   userLogin,
-  isProtected
+  isProtected,
+  logout
 };
