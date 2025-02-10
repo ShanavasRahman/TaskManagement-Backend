@@ -49,10 +49,13 @@ const userLogin = async (req, res) => {
     });
 
     res.cookie("auth_token", token, {
-      httpOnly: true,       
-      secure: true,         
-      maxAge: 3600000,      
+      httpOnly: true,
+      secure: true,
+      maxAge: 3600000,
+      sameSite: "None",
+      domain: "https://task-management-tawny-two.vercel.app",
     });
+    
     const userDetails = {
       userId: user._id,
       userName:user.name,
