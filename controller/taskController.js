@@ -35,9 +35,7 @@ const createTask = async (req, res) => {
 
 const displayTask = async (req, res) => {
   try {
-    console.log("im here bro")
     const { id } = req.body;
-    console.log(id);
 
     const user = await User.findById(id);
     if (!user) {
