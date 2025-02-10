@@ -32,7 +32,7 @@ const userSignUp = async (req, res) => {
 
 const userLogin = async (req, res) => {
   try {
-    console.log("facing problem in login");
+    console.log(req.body);
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
@@ -49,13 +49,8 @@ const userLogin = async (req, res) => {
     });
 
     res.cookie("auth_token", token, {
-      httpOnly: true,
-      secure: true,
       maxAge: 3600000,
-      sameSite: "None",
-      domain: "https://task-management-tawny-two.vercel.app",
     });
-    
     const userDetails = {
       userId: user._id,
       userName:user.name,
